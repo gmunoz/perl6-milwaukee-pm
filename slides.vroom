@@ -1,0 +1,267 @@
+# This is a sample Vroom input file. It should help you get started.
+#
+# Edit this file with your content. Then run `vroom vroom` to start
+# the show!
+#
+# See `perldoc Vroom` for complete details.
+#
+---- config
+# Basic config options.
+title: Perl 6
+indent: 4
+auto_size: 1
+# height: 18
+# width: 69
+vim_opts: '-u vimrc'
+skip: 0
+
+# The following options are for Gvim usage.
+# vim: gvim
+# gvimrc: |
+#   set fuopt=maxhorz,maxvert
+#   set guioptions=egmLtT
+#   set guifont=Bitstream_Vera_Sans_Mono:h18
+#   set guicursor=a:blinkon0-ver25-Cursor
+#   colorscheme default
+
+---- center
+Perl 6
+Taking TMTOWTDI to another level
+
+Gabriel Muñoz
+@gabriel__munoz
+
+----
+== .say .WHAT .perl
+% Moving around
+
+* Exploring Perl 6 can be done with the following operators:
+
++* .say   => perl 5 equivalent (since 5.10)
++* .WHAT  => what type am I?
++* .perl  => Perlish representation of any object (eval'able)
+
+====
+See S02 for .perl
+say operator introduced into 5.10.
+
+---- perl6
+== # Useful to know what you are and how to construct a type.
+
+my $i = 5;
+
+say $i;              # function : 5
+$i.say;              # method   : 5
+
+say $i.WHAT;         # (Int)
+$i.WHAT.say;         # (Int)
+
+(1, 2, 3).perl.say;  # (1, 2, 3)
+
+---- perl6
+== # Scalars
+
+my $var = 1;
+say $var.WHAT;   # (Int)
+
+$var = "some arbitrary string";
+say $var.WHAT;   # (Str)
+
+---- perl6
+== # Arrays/Lists
+
+# The , is the Perl 6 list operator--except for the empty list: ()
+
+my @list = 1, 2, 3;
+say @list.perl;
+
+@list = ();      # empty list
+say @list.perl;
+
+---- perl6
+== # Hashes
+
+# => 'fat comma' auto-quotes barewords used as its left operand
+
+my %hash =
+	1 => "one",
+	2 => "two",
+	3 => "three";
+
+say %hash.perl;
+
+====
+"Fat Comma to Adverbial Pairs": https://www.youtube.com/watch?v=egz3HeNEDnM
+
+---- perl6
+== # Interpolation
+
+my $name = "Gabriel";
+say "Hello, $name";
+
+my @list = <one two three four>;  # qw/one two three four/
+say "@list";                      # literal, no interpolation
+say "@list[]";                    # zen slice
+say "{@list}";                    # interpolates
+
+my %hash = ( 1 => 'one', 2 => 'two', );
+say "%hash";                      # literal, no interpolation
+say "%hash{}";                    # interpolates
+say "{%hash}";                    # also interpolates
+
+---- perl6
+== # Interpolating Code
+
+sub foo {
+	65536;
+}
+
+say "Run a subroutine and coerce into a string: '{foo()}'";
+
+====
+See S04: http://www.perlcabal.org/syn/S04.html
+
+----
+== Closures
+
+* Every block in Perl 6 is a closure
++* Anonymous subroutines that take a snapshot of their lexical environment
++* If it has curly braces {} then think "closure"
++* Logically, any compilation unit, from beginning to end
+
+====
+See S04: http://perlcabal.org/syn/S04.html
+
+And:
+http://perlcabal.org/syn/S04.html#The_Relationship_of_Blocks_and_Declarations
+
+---- perl6
+== # Closures
+
+# Every block in Perl 6 is a closure
+
+my $i = 10;
+
+{
+	my $i = 200;
+	say $i;       # 200
+}
+
+say $i;           # 10
+
+---- perl6
+== # bare block
+
+my $func = { say "Hay" };
+$func();
+
+---- perl6
+
+# Lexical subroutine
+
+my $func;
+$func = sub ($a, $b) { say "matched" if $a eq $b };
+$func(10, 10);
+
+# "Pointy" block
+
+$func = -> $a, $b { say "matched" if $a eq $b };
+$func(10, 10);
+
+# Placeholder arguments
+
+$func = { say "matched" if $^a eq $^b };
+$func(10, 10);
+
+---- perl6
+== # The for statement
+
+my @foo = <clojure scala rust>;
+
+for @foo { .say }         # $_ is implicit as read-write variable
+for @foo <-> $_ { .say }  # explicit form of default $_
+
+for @foo -> $item { say "$item," }  # $item is read-only by default
+
+for @foo ->  $item is rw { $item = "perl6" if $item ~~ m/rust/ }
+for @foo <-> $item       { $item = "rust" if $item ~~ m/perl6/ }
+
+====
+See: http://perlcabal.org/syn/S04.html
+
+---- perl6
+== # more for loops, hashes too
+
+my @nums = 1..6;
+for @nums -> $odd, $even { say "$odd then $even" }
+
+my %hash = 1 => "one", 2 => "two", 3 => "three";
+for %hash.kv -> $key, $value { say "$key: $value" }
+
+---- skip
+== # reading lines of input
+
+for $*IN.lines -> $line  { say $line }
+
+---- skip
+== # Perl 5 semantics are still here.
+
+my sub say_args {
+	say "Arguments:";
+	say "\t$_" for @_;
+}
+
+say_args(1, 1, 2, 3, 5);
+
+---- skip
+== # looping through a list
+
+for 1, 2, 3 {
+	say $_;
+}
+
+---- skip
+== # Ranges
+
+for 1..10 {
+	say $_;
+}
+
+---- perl6
+== # Generators
+
+for 1, 3, 5 ... 15 {
+	say $_;
+}
+
+---- perl6
+
+# In reverse too.
+# Perl 6 will know about: Numeric, Str, and Date
+
+for 'z' ... 'l' {
+	print "$_,";
+}
+
+---- perl6
+
+# Generator given a pointy block and list of two input, in infinite list
+# context, but only up to (and including) the eighth element.
+
+say (1, 1, -> $a, $b { $a + $b } ... *)[^8];
+
+---- perl6
+== # This is Perl, we can do better...
+
+say (1, 1, -> $a, $b { $a + $b } ... *)[^8];
+say (1, 1, *+* ... *)[^8];
+
+====
+Operators: http://doc.perl6.org/language/operators
+
+---- center
+== The End
+
+Gabriel Muñoz
+
+@gabriel__munoz
