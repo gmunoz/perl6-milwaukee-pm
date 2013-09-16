@@ -1,0 +1,85 @@
+# This is a sample Vroom input file. It should help you get started.
+#
+# Edit this file with your content. Then run `vroom vroom` to start
+# the show!
+#
+# See `perldoc Vroom` for complete details.
+#
+---- config
+# Basic config options.
+title: Perl 6
+indent: 4
+auto_size: 1
+# height: 18
+# width: 69
+vim_opts: '-u vimrc'
+skip: 0
+
+# The following options are for Gvim usage.
+# vim: gvim
+# gvimrc: |
+#   set fuopt=maxhorz,maxvert
+#   set guioptions=egmLtT
+#   set guifont=Bitstream_Vera_Sans_Mono:h18
+#   set guicursor=a:blinkon0-ver25-Cursor
+#   colorscheme default
+
+---- center
+Perl 6
+Taking TMTOWTDI to another level
+
+Gabriel Muñoz
+@gabriel__munoz
+
+---- perl6
+
+class Phone {
+	has $.OS;       # public, read-only attribute
+	has $.carrier;
+}
+
+my $phone = Phone.new(OS => "Android", carrier => "AT&T");
+
+say $phone.WHAT;  # (Phone)
+
+say $phone.OS;    # Android
+
+$phone.OS = "iOS" # Exception: Can't write to a readonly variable.
+
+---- perl6
+== # Phone.pm
+
+class Phone;
+
+has $.OS;
+has $.carrier;
+
+method call { ... }
+
+---- perl6
+== # Read/Write trait
+
+class Phone {
+	has $.OS;
+	has $.carrier is rw;
+}
+
+my $phone = Phone.new(OS => "Android", carrier => "AT&T");
+
+say $phone.carrier;   # AT&T
+
+$phone.carrier = "Verizon";
+
+say $phone.carrier;   # Verizon
+
+---- perl6
+== # Private variable
+
+class
+
+---- center
+== The End
+
+Gabriel Muñoz
+
+@gabriel__munoz
