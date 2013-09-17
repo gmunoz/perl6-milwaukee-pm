@@ -1,0 +1,24 @@
+---- config
+title: Perl 6
+indent: 4
+auto_size: 1
+# height: 18
+# width: 69
+vim_opts: '-u vimrc'
+skip: 0
+
+---- perl6
+== # if statement
+
+my $one = 1;
+
+if $one eq "1" {           # $one is coerced into a Str
+	say "Yes"
+}
+
+say "Yes" if $one == "1";  # "1" is coerced into an Int
+
+if 1 eq "2" {
+} elsif 1 eq 2 {
+} else {
+}

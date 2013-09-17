@@ -1,6 +1,9 @@
 #!/usr/bin/env perl6
 
-my @input_files = <intro.vroom objects.vroom last.vroom>;
+my @input_files = 'intro.vroom',
+                  'control-structures.vroom',
+                  'objects.vroom',
+                  'last.vroom';
 
 my $first_slide = shift @input_files;
 my $out_fname = "slides.vroom";
