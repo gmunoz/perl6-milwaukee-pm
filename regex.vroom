@@ -1,0 +1,20 @@
+---- config
+title: Perl 6
+indent: 4
+auto_size: 1
+# height: 18
+# width: 69
+vim_opts: '-u vimrc'
+skip: 0
+
+---- perl6
+== # Smartmatch operator ~~
+
+my $text = "Milwaukee Perl Monger's";
+if $text ~~ m/ wauk / {
+	say "I found '$/'";   # $/ is the match object
+}
+
+if $text !~~ m/ Clojure / {
+	say "Didn't match Clojure";
+}

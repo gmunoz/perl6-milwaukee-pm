@@ -6,6 +6,7 @@ my @input_files = 'intro.vroom',
                   'closures.vroom',
                   'loops.vroom',
                   'objects.vroom',
+                  'regex.vroom',
                   'last.vroom';
 
 my $first_slide = shift @input_files;
