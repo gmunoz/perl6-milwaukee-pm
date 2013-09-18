@@ -8,20 +8,6 @@ vim_opts: '-u vimrc'
 skip: 0
 
 ---- perl6
-== # Useful to know what you are and how to construct a type.
-
-say "hello, world";  # function : hello, world
-"hello, world".say;  # method   : hello, world
-
-say 5.WHAT;         # (Int)
-
-(1, 2, 3).WHAT.say;  # (Parcel)
-(1, 2, 3).perl.say;  # (1, 2, 3)
-
-(1 => "one", 2 => "two").WHAT.say;
-(1 => "one", 2 => "two").perl.say;
-
----- perl6
 == # Scalars
 
 my $var = 1;
