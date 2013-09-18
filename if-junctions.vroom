@@ -7,10 +7,6 @@ auto_size: 1
 vim_opts: '-u vimrc'
 skip: 0
 
-----
-
-* filler
-
 ---- perl6
 == # if statement
 

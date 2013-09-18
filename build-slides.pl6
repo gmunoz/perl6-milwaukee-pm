@@ -1,7 +1,9 @@
 #!/usr/bin/env perl6
 
 my @input_files = 'intro.vroom',
+                  'scalar-array-hash.vroom',
                   'if-junctions.vroom',
+                  'closures.vroom',
                   'objects.vroom',
                   'last.vroom';
 

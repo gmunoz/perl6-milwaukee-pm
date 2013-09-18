@@ -1,0 +1,90 @@
+---- config
+title: Perl 6
+indent: 4
+auto_size: 1
+# height: 18
+# width: 69
+vim_opts: '-u vimrc'
+skip: 0
+
+---- perl6
+== # Useful to know what you are and how to construct a type.
+
+say "hello, world";  # function : hello, world
+"hello, world".say;  # method   : hello, world
+
+say 5.WHAT;         # (Int)
+
+(1, 2, 3).WHAT.say;  # (Parcel)
+(1, 2, 3).perl.say;  # (1, 2, 3)
+
+(1 => "one", 2 => "two").WHAT.say;
+(1 => "one", 2 => "two").perl.say;
+
+---- perl6
+== # Scalars
+
+my $var = 1;
+say $var.WHAT;   # (Int)
+
+$var = "some arbitrary string";  # dynamically typed
+say $var.WHAT;   # (Str)
+
+say $var.perl;   # "some arbitrary string"
+
+---- perl6
+== # Arrays/Lists
+
+# The , is the Perl 6 list operator--except for the empty list: ()
+
+my @list = 1, 2, 3;
+
+say @list.WHAT;
+say @list.perl;
+
+@list = ();      # empty list
+say @list.perl;
+
+---- perl6
+== # Hashes
+
+# => 'fat comma' auto-quotes barewords used as its left operand
+
+my %hash =
+	1 => "one",
+	2 => "two",
+	3 => "three";
+
+say %hash.WHAT;
+say %hash.perl;
+
+====
+"Fat Comma to Adverbial Pairs": https://www.youtube.com/watch?v=egz3HeNEDnM
+
+---- perl6
+== # Interpolation
+
+my $name = "Gabriel";
+say "Hello, $name";
+
+my @list = <one two three four>;  # qw/one two three four/
+say "@list";                      # literal, no interpolation
+say "@list[]";                    # zen slice
+say "{@list}";                    # interpolates
+
+my %hash = ( 1 => 'one', 2 => 'two', );
+say "%hash";                      # literal, no interpolation
+say "%hash{}";                    # interpolates
+say "{%hash}";                    # also interpolates
+
+---- perl6
+== # Interpolating Code
+
+sub foo {
+	65536;
+}
+
+say "Run a subroutine and coerce into a string: '{foo()}'";
+
+====
+See S04: http://www.perlcabal.org/syn/S04.html
