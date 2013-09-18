@@ -11,10 +11,225 @@ skip: 0
 == # Smartmatch operator ~~
 
 my $text = "Milwaukee Perl Monger's";
-if $text ~~ m/ wauk / {
+if $text ~~ m/ wauk / {   # space is not significant by default!
 	say "I found '$/'";   # $/ is the match object
 }
 
-if $text !~~ m/ Clojure / {
+if $text !~~ m/ Clojure / {  # negation is represented by !~~
 	say "Didn't match Clojure";
+}
+
+---- perl6
+== # Match object is $/
+
+
+
+---- skip
+== The Rules (5)
+
+Longest token match
+
+1) Longest token matching: food\s+ beats foo by 2 or more positions
++2) Longest literal prefix: food\w* beats foo\w* by 1 position
++3) Declaration from most-derived grammar beats less-derived
++4) Within a given compilation unit, earlier declaration wins
++5) Declaration with least number of 'uses' wins
+
+->
+
+====
+See: http://www.perlcabal.org/syn/S05.html#Overview
+
+---- slide
+== Unchanged from Perl 5
+
+* Capturing: (...)
++* Repetition quantifiers: *, +, and ?
++* Alternatives (sort of): |
++* Backslash escape: \
++* Minimal matching suffix: ??, *?, +?
+
+====
+http://www.perlcabal.org/syn/S05.html#Unchanged_syntactic_features
+
+---- slides
+== Some rules
+
+                Alphanumerics        Non-alphanumerics         Mixed
+
+Literal glyphs   a    1    _        \*  \$  \.   \\   \'       K\-9\!
+Metasyntax      \a   \1   \_         *   $   .    \    '      \K-\9!
+Quoted glyphs   'a'  '1'  '_'       '*' '$' '.' '\\' '\''     'K-9!'
+
+* All glyphs that are _, Unicode letters or numbers are *always* literal
++* Any other glyph is metasyntactic (*not* self-matching)
++* Escape metasyntax with \
++* Glyphs can be made literal by placing them in quotes
++* Double quoting glyphs makes it literal with interpolating semantics
+
+---- perl6
+# Modifiers are adverbs at the *start* of a regex.
+
+if "TMTOWTDI" ~~ m:ignorecase/tmtowtdi/ {  # or for short m:i//
+	say "Matched '$/' while ignoring case";
+}
+
+if "foo bar" ~~ m:sigspace/foo bar/ {  # space is significant now
+	say "Matched '$/' while space is significant";
+}
+
+====
+:ignorecase :i  => makes matching case insignificant
+:ignoremark :m  => ignores accents
+:sigspace   :s  => whitspace is significant
+:ratchet    :r  => Causes the regex to *not* backtrack by default
+:global     :g  => 
+:Perl5      :P5 => Runs in Perl 5 regular expression mode
+
+Unicode modifiers
+:bytes          => Match bytes
+:codes          => Match codepoints
+:graphs         => Match language-independent graphemes
+:chars          => Match at current max level
+
+---- perl6
+# . matches *any* character, including a newline
+
+say "Matched a newline" if "\n" ~~ m/\n/;
+
+say "Matched a '$/'" if 'abc' ~~ m/a.c/;
+
+---- perl6
+
+my $str = q{foo
+bar
+cake};
+
+# ^ and $ match the start/end of a *string*
+say "Matched start of string '$/'"   if $str ~~ m/^foo/;
+say "Matched end of a string '$/'"   if $str ~~ m/cake$/;
+say "Failed to match start of 'bar'" if $str !~~ m/^bar/;
+
+---- perl6
+
+my $str = q{foo
+bar
+cake};
+
+# ^^ and $$ match the line beginning/ending
+say "Matched beginning of line '$/'" if $str ~~ m/^^bar/;
+say "Matched end of the line '$/'"   if $str ~~ m/bar$$/;
+say "Matched end of the line '$/'"   if $str ~~ m/cake$$/;
+
+====
+TODO: I need better examples of beginning/end lines.
+
+---- perl6
+== # Matching space
+
+my $str = "Check this out";
+
+# regexes default to space is insignificant
+say "No match" unless $str ~~ m/Check this out/;
+
+# Make space significant with the :sigspace modifier (or :s).
+say "Matched '$/'" if $str ~~ m:s/Check this out/;
+
+# Match using a literal space.
+say "Matched '$/'" if $str ~~ m/Check ' '/;
+
+# Match using a named character class.
+say "Matched '$/'" if $str ~~ m/Check <space> this <space> out/;
+
+---- perl6
+== # backslashes
+
+my $str = "zipcode: 54935";
+
+if $str ~~ m/ \w+ ':' \s \d+/ {
+	say "Matched '$/'";
+}
+
+---- slides
+== Backslash shortcuts
+
+\d      <digit>    A digit
+\D      <-digit>   A nondigit
+\w      <alnum>    A word character
+\W      <-alnum>   A non-word character
+\s      <sp>       A whitespace character
+\S      <-sp>      A non-whitespace character
+\h                 A horizontal whitespace
+\H                 A non-horizontal whitespace
+\v                 A vertical whitespace
+\V                 A non-vertical whitespace
+
+====
+http://www.perlcabal.org/syn/S05.html#Backslash_reform
+
+---- perl6
+== # Grouping
+
+# () delimit capturing groups
+if "zipcode: 54935" ~~ m/ \w+ ':' \s (\d+)/ {
+	say "zipcode is $0";
+}
+
+# [] delimit non-capturing groups
+my $team = 'BrewersPackers';
+if $team ~~ m/[Packers|Brewers]+/ {  # recall: longest token match
+	say "Matched '$/'.";
+}
+
+---- perl6
+== # Character classes
+
+# syntax is now <[]>
+
+my $str = "abbba";
+
+if $str ~~ m/b<[b]>/ {
+	say "Matched '$/'";
+}
+
+====
+$if $str ~~ m/<[2..9]> ** 3 '-' \n ** 3 '-' \n ** 3/ {
+}
+
+---- perl6
+# Character class arithmetic
+
+my $str = 'Gabriel';
+
+if $str ~~ m/ <+alnum - [ie]>* / {  # recall: greedy match
+	say "Matched '$/'";
+}
+
+---- perl6
+== # Repetition quantifier is **
+
+my $str = "mememememe";
+
+if $str ~~ m/ [me|meme] ** 2 / {  # | matches greedily
+	say "Matched '$/'";
+}
+
+if $str ~~ m/ 'me' ** 2..4 / {    # Match 'me' two to four times
+	say "Matched '$/'";
+}
+
+====
+Instead of representing temporal alternation, | now represents logical
+alternation with declarative longest-token semantics. (You may now use
+|| to indicate the old temporal alternation. That is, | and || now work
+within regex syntax much the same as they do outside of regex syntax,
+where they represent junctional and short-circuit OR. This includes the
+fact that | has tighter precedence than ||.)
+
+via http://www.perlcabal.org/syn/S05.html#Longest-token_matching
+
+---- perl6
+== # Not sure about regexes?
+
+if "Perl " ~~ m:Perl5// {
 }
