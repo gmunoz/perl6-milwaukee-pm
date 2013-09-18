@@ -1,0 +1,95 @@
+---- config
+title: Perl 6
+indent: 4
+auto_size: 1
+# height: 18
+# width: 69
+vim_opts: '-u vimrc'
+skip: 0
+
+---- perl6
+== # The for statement
+
+my @foo = <clojure scala rust>;
+
+for @foo { .say }         # $_ is implicit as read-write variable
+for @foo <-> $_ { .say }  # explicit form of default $_
+
+for @foo -> $item { say "$item," }  # $item is read-only by default
+
+for @foo ->  $item is rw { $item = "perl6" if $item ~~ m/rust/ }
+for @foo <-> $item       { $item = "rust" if $item ~~ m/perl6/ }
+
+====
+See: http://perlcabal.org/syn/S04.html
+
+---- perl6
+== # more for loops, hashes too
+
+my @nums = 1..6;
+for @nums -> $odd, $even { say "$odd then $even" }
+
+my %hash = 1 => "one", 2 => "two", 3 => "three";
+for %hash.kv -> $key, $value { say "$key: $value" }
+
+---- skip
+== # reading lines of input
+
+for $*IN.lines -> $line  { say $line }
+
+---- skip
+== # Perl 5 semantics are still here.
+
+my sub say_args {
+	say "Arguments:";
+	say "\t$_" for @_;
+}
+
+say_args(1, 1, 2, 3, 5);
+
+---- skip
+== # looping through a list
+
+for 1, 2, 3 {
+	say $_;
+}
+
+---- skip
+== # Ranges
+
+for 1..10 {
+	say $_;
+}
+
+---- perl6
+== # Generators
+
+for 1, 3, 5 ... 15 {
+	say $_;
+}
+
+---- perl6
+
+# In reverse too.
+# Perl 6 will know about: Numeric, Str, and Date
+
+for 'z' ... 'l' {
+	print "$_,";
+}
+
+---- perl6
+
+# Generator given a pointy block and list of two input, in infinite list
+# context, but only up to (and including) the eighth element.
+
+say (1, 1, -> $a, $b { $a + $b } ... *)[^8];
+
+---- perl6
+== # This is Perl, we can do better...
+
+say (1, 1, -> $a, $b { $a + $b } ... *)[^8];
+say (1, 1, *+* ... *)[^8];
+
+====
+Operators: http://doc.perl6.org/language/operators
+

@@ -4,6 +4,7 @@ my @input_files = 'intro.vroom',
                   'scalar-array-hash.vroom',
                   'if-junctions.vroom',
                   'closures.vroom',
+                  'loops.vroom',
                   'objects.vroom',
                   'last.vroom';
 
