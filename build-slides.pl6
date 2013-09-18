@@ -1,7 +1,7 @@
 #!/usr/bin/env perl6
 
 my @input_files = 'intro.vroom',
-                  'control-structures.vroom',
+                  'if-junctions.vroom',
                   'objects.vroom',
                   'last.vroom';
 
