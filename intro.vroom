@@ -49,6 +49,6 @@ say 5.WHAT;         # (Int)
 (1, 2, 3).WHAT.say;  # (Parcel)
 (1, 2, 3).perl.say;  # (1, 2, 3)
 
-(1 => "one", 2 => "two").WHAT.say;
-(1 => "one", 2 => "two").perl.say;
+(1 => "one", 2 => "two").WHAT.say;  # (Parcel)
+(1 => "one", 2 => "two").perl.say;  # (1 => "one", 2 => "two")
 

@@ -59,3 +59,19 @@ $func(10, 10);
 $func = { say "matched" if $^a eq $^b };
 $func(10, 10);
 
+---- perl6
+== # Whatever currying
+
+my $add2 = * + 2;
+say $add2(10);   # 12
+
+my $add = * + *;
+say $add(2, 2);  # 4
+
+$add.WHAT.say;   # (WhateverCode)
+
+====
+http://doc.perl6.org/type/Whatever
+
+Whatever currying results in whatever code:
+http://doc.perl6.org/type/WhateverCode

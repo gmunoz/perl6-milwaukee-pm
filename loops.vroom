@@ -8,9 +8,9 @@ vim_opts: '-u vimrc'
 skip: 0
 
 ---- perl6
-== # The for statement
+== # The for loop
 
-my @foo = <clojure scala rust>;
+my @foo = <clojure scala rust>;  # auto-quote, qw//
 
 for @foo { .say }         # $_ is implicit as read-write variable
 for @foo <-> $_ { .say }  # explicit form of default $_
@@ -31,6 +31,23 @@ for @nums -> $odd, $even { say "$odd then $even" }
 
 my %hash = 1 => "one", 2 => "two", 3 => "three";
 for %hash.kv -> $key, $value { say "$key: $value" }
+
+---- perl6
+== # looping through a hash
+
+my %colors = {
+	red    => '#FF0000',
+	green  => '#00FF00',
+	blue   => '#0000FF',
+};
+
+for %colors.kv -> $key, $value {
+	say "$key: $value";
+}
+
+for %colors.keys.sort -> $key {
+	say "$key: %colors{$key}";
+}
 
 ---- skip
 == # reading lines of input

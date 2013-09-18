@@ -12,11 +12,11 @@ skip: 0
 
 my $one = 1;
 
-if $one eq "1" {           # $one is coerced into a Str
+if $one eq "1" {           # $one is coerced into a Str: Yes
 	say "Yes"
 }
 
-say "Yes" if $one == "1";  # "1" is coerced into an Int
+say "Yes" if $one == "1";  # "1" is coerced into an Int: Yes
 
 ---- perl6
 == # if else
@@ -25,7 +25,7 @@ my $one = 1;
 
 if $one eq "2" {
 	say "this won't execute";
-} elsif 1 eq 2 {
+} elsif $one eq 2 {
 	say "this also won't execute";
 } else {
 	say "$one was not found";
