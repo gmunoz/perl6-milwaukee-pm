@@ -31,11 +31,11 @@ don't have to be built into the language.
 
 my @list = 1, 2, 3;
 
-say @list.WHAT;
-say @list.perl;
+say @list.WHAT;  # (Array)
+say @list.perl;  # Array.new(1, 2, 3)
 
 @list = ();      # empty list
-say @list.perl;
+say @list.perl;  # Array.new()
 
 ---- perl6
 == # Ranges / Auto-quote
@@ -51,6 +51,19 @@ my @list2 = 1..*;  # "whatever star"
 # Autoquote list, Perl's qw// shortcut
 
 my @list3 = <one two three>;
+
+---- perl6
+== # Accessing a list
+
+my @list = 1..10;
+
+say @list[0];    # 1
+say @list.[1];   # 2
+say @list[0,1];  # slice: 1, 2
+
+say @list.elems; # number of items      = 10
+say @list.end;   # number of last index = 9
+say @list[*-1];  # last item            = 10
 
 ====
 http://doc.perl6.org/type/Whatever
