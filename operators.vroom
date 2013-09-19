@@ -1,0 +1,89 @@
+---- config
+title: Perl 6
+indent: 4
+auto_size: 1
+# height: 18
+# width: 69
+vim_opts: '-u vimrc'
+skip: 0
+
+---- perl6
+== # Doubling down on Unix
+
+my @input = 1..20;
+my (@evens, @odds);
+
+# Feed operator, strictly lazy
+
+@input ==> grep { $_ % 2 == 0 } ==> @evens;  # evens
+say @evens;
+
+# Feed operators have the notion of "direction"
+
+@odds <== grep { $_ % 2 != 0 } <== @input;
+say @odds;
+
+---- perl6
+== # Hyper operators
+
+# list operation that operates on each element and returns a list
+
+my @result;
+
+# Must be balanced on both sides
+
+@result = (1, 2) >>+<< (3, 4);
+say @result; # (4, 6) ... (1 + 3, 2 + 4)
+
+# DWIMery enabled when one direction
+
+@result = (1, 2) <<+<< (3, 4, 5, 6);
+say @result; # (4, 6, 6, 8) - iterates LHS over when more data needed
+
+# DWIMs outward too
+
+@result = (1, 2, 3) <<+>> (1, 2);
+say @result; # (2, 4, 4)
+
+---- perl6
+== # Meta reduction operator
+
+# Any infix operator can be placed between square brackets []
+
+say [+]  1, 2, 3, 4, 5;     # 1 + 2 + 3 + 4 + 5 = 15
+say [~]  <hello -- world>;  # hello--world
+
+---- perl6
+== # Reduction triangle operator
+
+# Generate intermediate result of meta reduction as a list
+
+say [\+]  1, 2, 3, 4, 5;     # 1, 3, 6, 10, 15
+say [\~]  <hello -- world>;  # 'hello', 'hello--', 'hello--world'
+
+---- perl6
+== # Cross operator
+
+# X followed by any infix operator
+
+my @result = <a b> X~ <1 2>;  # 'a1', 'a2', 'b1', 'b2'
+say @result;
+
+---- perl6
+== # Zip operator
+
+# Z followed by any infix operator.
+
+my @operator  = <+ - *>;
+my @left      = <1 2 3>;
+my @right     = <7 8 9>;
+
+for @left Z @operator Z @right -> $lhs, $op, $rhs {
+	say "$lhs $op $rhs";
+}
+
+# Gabor Szabo: http://perl6maven.com/tutorial/perl6-zip
+
+====
+I want to be evil and eval that string. Maybe with Perl 6 we can
+avoid examples that we don't to end up in legacy code :)
