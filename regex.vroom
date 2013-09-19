@@ -11,6 +11,7 @@ skip: 0
 == # Smartmatch operator ~~
 
 my $text = "Milwaukee Perl Monger's";
+
 if $text ~~ m/ Perl / {   # space is not significant by default!
 	say "I found '$/'";   # $/ is the match object
 }
@@ -79,11 +80,11 @@ Quoted glyphs   'a'  '1'  '_'       '*' '$' '.' '\\' '\''
 ---- perl6
 # Modifiers are adverbs at the *start* of a regex.
 
-if "TMTOWTDI" ~~ m:ignorecase/tmtowtdi/ {  # or for short m:i//
+if "TMTOWTDI" ~~ m:ignorecase/ tmtowtdi / {  # or for short m:i//
 	say "Matched '$/' while ignoring case";
 }
 
-if "foo bar" ~~ m:sigspace/foo bar/ {  # space is significant now
+if "foo bar" ~~ m:sigspace/ foo bar / {  # space is significant now
 	say "Matched '$/' while space is significant";
 }
 
@@ -109,7 +110,7 @@ say "Matched a newline" if "\n" ~~ m/\n/;
 say "Matched a '$/'"    if 'abc' ~~ m/a.c/;
 
 ---- perl6
-== # Matching start of string/line
+== # Matching start/end of string
 
 my $str = q{foo
 bar
@@ -121,7 +122,7 @@ say "Matched end of a string '$/'"   if $str ~~ m/cake$/;
 say "Failed to match start of 'bar'" if $str !~~ m/^bar/;
 
 ---- perl6
-== # Matching end of string/line
+== # Matching start/end of line
 
 my $str = q{foo
 bar
@@ -141,27 +142,27 @@ TODO: I need better examples of beginning/end lines.
 my $str = "Check this out";
 
 # regexes default to space is insignificant
-say "No match" unless $str ~~ m/Check this out/;
+say "No match" unless $str ~~ m/ Check this out /;
 
 # Make space significant with the :sigspace modifier (or :s).
-say "Matched '$/'" if $str ~~ m:s/Check this out/;
+say "Matched '$/'" if $str ~~ m:s/ Check this out /;
 
 # Match using a literal space.
-say "Matched '$/'" if $str ~~ m/Check ' '/;
+say "Matched '$/'" if $str ~~ m/ Check ' ' /;
 
 # Match using a named character class.
-say "Matched '$/'" if $str ~~ m/Check <space> this <space> out/;
+say "Matched '$/'" if $str ~~ m/ Check <space> this <space> out /;
 
 ---- perl6
 == # backslashes
 
 my $str = "zipcode: 54935";
 
-if $str ~~ m/ \w+ ':' \s \d+/ {
+if $str ~~ m/ \w+ ':' \s \d+ / {
 	say "Matched '$/'";
 }
 
----- slides
+---- skip
 == Backslash shortcuts
 
 \d      <digit>    A digit
@@ -208,10 +209,9 @@ if $str ~~ m/ < perl python ruby > / {
 http://www.perlcabal.org/syn/S05.html#Extensible_metasyntax_%28%3C...%3E%29
 
 ---- perl6
-== # Extensible metasyntax: capturing grammatical assertion
+== # Named character class or subrule
 
-# Leading alphabetic character after leading < means
-# a subrule or named character class.
+# Leading alphabetic character after leading <
 
 say "Matched space" if " " ~~ m/ <space> /;
 
@@ -223,7 +223,7 @@ if 'identifier ' ~~ m/ <.ident> <.ws> / {
 }
 
 ---- perl6
-== # Extensible metasyntax: Enumerated character classes
+== # Enumerated character classes
 
 my $str = '_phoneNumber';
 
@@ -277,8 +277,11 @@ say grep /<teams>/, @stuff;
 == # Grammar: Token
 
 # token: never backtracks by default (can be overridden)
+
 token proper_name { <word>+ <space> <word>+ }
+
 # Which is short for:
+
 regex name :ratchet { ... }
 
 ====
@@ -295,12 +298,16 @@ the ! forces greedy matching.
 
 # rule: never backtracks (:ratchet) and
 # space is significant (:sigspace)
+
 rule proper_name { <word>+ <word>+ }
+
 # which is short for:
+
 regex name :ratchet :sigspace { ... }
 
 ---- perl6
 == # Not sure about regexes?
 
-if "Perl " ~~ m:Perl5// {
+if "Perl " ~~ m:Perl5/.../ {  # muahhaaa!
+	say "TMTOWTDI";
 }

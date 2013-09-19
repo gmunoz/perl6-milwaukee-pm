@@ -14,7 +14,7 @@ my Int  $int    = 1;
 my Bool $truth  = True;
 my Str  $string = "Gabriel Munoz";
 
-$int.^mro;       # (Int) (Cool) (Any) (Mu)
+say $int.^mro;   # (Int) (Cool) (Any) (Mu)
 
 $int = $string;  # (runtime) Type check failed... expected 'Int'
 

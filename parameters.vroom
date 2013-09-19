@@ -17,7 +17,7 @@ sub add3 (Int $a, Int $b) { return $a + $b }
 say add1("2", 2);   # 4
 say add2(1..5);     # 1 + 2 + 3 + 4 + 5 = 15
 say add3(2, 2);     # 4
-#say add3("2", 2);  # (compile) error: Check failed
+#say add3("2", 2);   # (compile) error: Check failed
 
 ---- perl6
 # Named parameters
@@ -39,7 +39,7 @@ sub add {
 	return $lhs + $rhs;
 }
 
----- perl6
+---- skip
 # Array and hashes
 sub foo(Int $int, @list, %hash);
 

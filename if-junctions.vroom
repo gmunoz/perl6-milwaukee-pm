@@ -23,7 +23,7 @@ say "Yes" if $one == "1";  # "1" is coerced into an Int: Yes
 
 my $one = 1;
 
-if $one eq "2" {
+if $one eq "2" {  # $one coerces into a Str
 	say "this won't execute";
 } elsif $one eq 2 {
 	say "this also won't execute";

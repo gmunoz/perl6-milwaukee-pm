@@ -12,7 +12,7 @@ skip: 0
 
 my @foo = <clojure scala rust>;  # auto-quote, qw//
 
-for @foo { .say }         # $_ is implicit as read-write variable
+for @foo        { .say }  # $_ is implicit as read-write variable
 for @foo <-> $_ { .say }  # explicit form of default $_
 
 for @foo -> $item { say "$item," }  # $item is read-only by default
@@ -85,7 +85,7 @@ for 1, 3, 5 ... 15 {
 	say $_;
 }
 
----- perl6
+---- skip
 
 # In reverse too.
 # Perl 6 will know about: Numeric, Str, and Date

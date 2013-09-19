@@ -10,7 +10,8 @@ my @input_files = 'intro.vroom',
                   'loops.vroom',
                   'objects.vroom',
                   'regex.vroom',
-                  'last.vroom';
+                  'last.vroom',
+                  'encore.vroom';
 
 my $first_slide = shift @input_files;
 my $out_fname = "slides.vroom";
