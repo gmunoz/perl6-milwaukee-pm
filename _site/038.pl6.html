@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Slide 38</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+function navigate(e) {
+    var keynum = (window.event) // IE
+        ? e.keyCode
+        : e.which;
+    if (keynum == 8) {
+        window.location = "037.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 13 || keynum == 32) {
+        window.location = "039.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 73 || keynum == 105) {
+        window.location = "index.html";
+        return false;
+    }
+    return true;
+}
+</script>
+</head>
+<body onkeydown="return navigate(event)">
+<div style="border-style: solid ; border-width: 2px ; font-size: x-large">
+<pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                      # This is Perl, we can do better...
+
+    say (1, 1, -&gt; $a, $b { $a + $b } ... *)[^8];
+    say (1, 1, *+* ... *)[^8];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+<br>
+<div style="font-size: small">
+<p>Operators: http://doc.perl6.org/language/operators</p><p># This is a sample Vroom input file. It should help you get started.</p><p>#</p><p># Edit this file with your content. Then run <code>vroom vroom</code> to start</p><p># the show!</p><p>#</p><p># See <code>perldoc Vroom</code> for complete details.</p><p>#</p><p></p>
+</div>
+</body>
+</html>

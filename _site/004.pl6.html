@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Slide 4</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+function navigate(e) {
+    var keynum = (window.event) // IE
+        ? e.keyCode
+        : e.which;
+    if (keynum == 8) {
+        window.location = "003.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 13 || keynum == 32) {
+        window.location = "005.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 73 || keynum == 105) {
+        window.location = "index.html";
+        return false;
+    }
+    return true;
+}
+</script>
+</head>
+<body onkeydown="return navigate(event)">
+<div style="border-style: solid ; border-width: 2px ; font-size: x-large">
+<pre>
+
+
+
+
+
+
+
+
+
+
+                                   # Scalars
+
+    my $var = 1;
+    say $var.WHAT;   # (Int)
+
+    $var = &quot;some arbitrary string&quot;;  # &quot;dynamically&quot; typed
+    say $var.WHAT;   # (Str)
+
+    say $var.perl;   # &quot;some arbitrary string&quot;
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+<br>
+<div style="font-size: small">
+<p>What does it mean to be dynamically types? I think Perl 6 takes the type</p><p>system to a different level, not only bridging a gap between</p><p>functional/OO languages, but those that can leverage types in ways that</p><p>don't have to be built into the language.</p><p></p>
+</div>
+</body>
+</html>

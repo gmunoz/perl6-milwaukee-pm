@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Slide 43</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+function navigate(e) {
+    var keynum = (window.event) // IE
+        ? e.keyCode
+        : e.which;
+    if (keynum == 8) {
+        window.location = "042.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 13 || keynum == 32) {
+        window.location = "044.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 73 || keynum == 105) {
+        window.location = "index.html";
+        return false;
+    }
+    return true;
+}
+</script>
+</head>
+<body onkeydown="return navigate(event)">
+<div style="border-style: solid ; border-width: 2px ; font-size: x-large">
+<pre>
+
+
+
+
+
+
+
+                           # Multi Method Dispatching
+
+    class Monger {
+    	multi method code { ... }
+    	multi method code (Str $lang) { ... }
+    	multi method code (Str $lang, $editor) { ... }
+    	multi method code (:$lang, :$editor) { ... } # named parameters
+    }
+
+    my $monger = Monger.new;
+
+    $monger.code();
+    $monger.code(&quot;Perl6&quot;);
+    $monger.code(&quot;Perl6&quot;, &quot;vi&quot;);
+    $monger.code(editor =&gt; &quot;vi&quot;, lang =&gt; &quot;Perl6&quot;);
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+<br>
+<div style="font-size: small">
+<p></p>
+</div>
+</body>
+</html>

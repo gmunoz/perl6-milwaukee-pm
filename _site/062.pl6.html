@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Slide 62</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+function navigate(e) {
+    var keynum = (window.event) // IE
+        ? e.keyCode
+        : e.which;
+    if (keynum == 8) {
+        window.location = "061.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 13 || keynum == 32) {
+        window.location = "063.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 73 || keynum == 105) {
+        window.location = "index.html";
+        return false;
+    }
+    return true;
+}
+</script>
+</head>
+<body onkeydown="return navigate(event)">
+<div style="border-style: solid ; border-width: 2px ; font-size: x-large">
+<pre>
+
+
+
+
+
+
+
+
+
+                         # Repetition quantifier is **
+
+    my $str = &quot;mememememe&quot;;
+
+    if $str ~~ m/ [me|meme] ** 2 / {  # | matches greedily
+    	say &quot;Matched '$/'&quot;;
+    }
+
+    if $str ~~ m/ 'me' ** 2..4 / {    # Match 'me' two to four times
+    	say &quot;Matched '$/'&quot;;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+<br>
+<div style="font-size: small">
+<p>Instead of representing temporal alternation, | now represents logical</p><p>alternation with declarative longest-token semantics. (You may now use</p><p>|| to indicate the old temporal alternation. That is, | and || now work</p><p>within regex syntax much the same as they do outside of regex syntax,</p><p>where they represent junctional and short-circuit OR. This includes the</p><p>fact that | has tighter precedence than ||.)</p><p>via http://www.perlcabal.org/syn/S05.html#Longest-token_matching</p><p></p>
+</div>
+</body>
+</html>

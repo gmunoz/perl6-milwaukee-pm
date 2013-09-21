@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Slide 39</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+function navigate(e) {
+    var keynum = (window.event) // IE
+        ? e.keyCode
+        : e.which;
+    if (keynum == 8) {
+        window.location = "038.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 13 || keynum == 32) {
+        window.location = "040.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 73 || keynum == 105) {
+        window.location = "index.html";
+        return false;
+    }
+    return true;
+}
+</script>
+</head>
+<body onkeydown="return navigate(event)">
+<div style="border-style: solid ; border-width: 2px ; font-size: x-large">
+<pre>
+
+
+
+
+
+
+                                 # Basic class
+
+    class Phone {
+    	has $.OS;       # public, read-only attribute...
+    	has $.carrier;  #   ...automatic generation of accessor of same name
+
+    	method call { ... }
+    }
+
+    my $phone = Phone.new(OS =&gt; &quot;Android&quot;, carrier =&gt; &quot;AT&amp;T&quot;);
+
+    say $phone.WHAT;  # (Phone)
+
+    say $phone.OS;    # Android
+
+    $phone.OS = &quot;iOS&quot; # Error: Can't write to a readonly attribute
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+<br>
+<div style="font-size: small">
+<p></p>
+</div>
+</body>
+</html>

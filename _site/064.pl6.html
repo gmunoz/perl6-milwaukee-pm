@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Slide 64</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+function navigate(e) {
+    var keynum = (window.event) // IE
+        ? e.keyCode
+        : e.which;
+    if (keynum == 8) {
+        window.location = "063.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 13 || keynum == 32) {
+        window.location = "065.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 73 || keynum == 105) {
+        window.location = "index.html";
+        return false;
+    }
+    return true;
+}
+</script>
+</head>
+<body onkeydown="return navigate(event)">
+<div style="border-style: solid ; border-width: 2px ; font-size: x-large">
+<pre>
+
+
+
+
+
+
+
+
+
+
+                                # Grammar: Token
+
+    # token: never backtracks by default (can be overridden)
+
+    token proper_name { &lt;word&gt;+ &lt;space&gt; &lt;word&gt;+ }
+
+    # Which is short for:
+
+    regex name :ratchet { ... }
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+<br>
+<div style="font-size: small">
+<p># regex: use the colon to specify no backtracking</p><p>regex proper_name { <word>+: <space> <word>+: }</p><p>In normal regexes, use *:, +:, or ?: to prevent backtracking into</p><p>the quantifier. If you want to backtrack, append either a ? or a !</p><p>to the quantifier. The ? forces frugal matching as usual, while</p><p>the ! forces greedy matching.</p><p></p>
+</div>
+</body>
+</html>

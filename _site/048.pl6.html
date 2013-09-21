@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Slide 48</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+function navigate(e) {
+    var keynum = (window.event) // IE
+        ? e.keyCode
+        : e.which;
+    if (keynum == 8) {
+        window.location = "047.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 13 || keynum == 32) {
+        window.location = "049" + ".html";
+        return false;
+    }
+    if (keynum == 73 || keynum == 105) {
+        window.location = "index.html";
+        return false;
+    }
+    return true;
+}
+</script>
+</head>
+<body onkeydown="return navigate(event)">
+<div style="border-style: solid ; border-width: 2px ; font-size: x-large">
+<pre>
+
+
+
+
+
+
+
+
+                              # Match object is $/
+
+    #   012345678901234567890
+    if 'Today is a Perl 6 day' ~~ m/ Perl / {
+    	say &quot;Matched '$/'&quot;;
+    }
+
+    say &quot;from:  {$/.from}&quot;;  # Starting position of the match
+    say &quot;to:    {$/.to}&quot;;    # End position of the match
+    say &quot;chars: {$/.chars}&quot;; # Number of characters matched
+    say &quot;Str:   {$/.Str}&quot;;   # The matched text (default string coercion)
+    say &quot;orig:  {$/.orig}&quot;;  # The original matched string
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+<br>
+<div style="font-size: small">
+<p></p>
+</div>
+</body>
+</html>

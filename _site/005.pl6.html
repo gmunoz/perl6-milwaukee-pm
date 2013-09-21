@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Slide 5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+function navigate(e) {
+    var keynum = (window.event) // IE
+        ? e.keyCode
+        : e.which;
+    if (keynum == 8) {
+        window.location = "004.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 13 || keynum == 32) {
+        window.location = "006.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 73 || keynum == 105) {
+        window.location = "index.html";
+        return false;
+    }
+    return true;
+}
+</script>
+</head>
+<body onkeydown="return navigate(event)">
+<div style="border-style: solid ; border-width: 2px ; font-size: x-large">
+<pre>
+
+
+
+
+
+
+
+
+
+                                 # Arrays/Lists
+
+    # The , is the Perl 6 list operator--except for the empty list: ()
+
+    my @list = 1, 2, 3;
+
+    say @list.WHAT;  # (Array)
+    say @list.perl;  # Array.new(1, 2, 3)
+
+    @list = ();      # empty list
+    say @list.perl;  # Array.new()
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+<br>
+<div style="font-size: small">
+<p></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Slide 58</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+function navigate(e) {
+    var keynum = (window.event) // IE
+        ? e.keyCode
+        : e.which;
+    if (keynum == 8) {
+        window.location = "057.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 13 || keynum == 32) {
+        window.location = "059.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 73 || keynum == 105) {
+        window.location = "index.html";
+        return false;
+    }
+    return true;
+}
+</script>
+</head>
+<body onkeydown="return navigate(event)">
+<div style="border-style: solid ; border-width: 2px ; font-size: x-large">
+<pre>
+
+
+
+
+
+
+
+
+
+                      # Extensible metasyntax: quote words
+
+    # Leading space after &lt; means &quot;quote words&quot; array literal
+
+    my $str = &quot;ruby&quot;;
+
+    if $str ~~ m/ &lt; perl python ruby &gt; / {
+        # same as: m/ [ 'perl' | 'python' | 'ruby' ] /
+    	say &quot;Matched '$/'&quot;;  # ruby
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+<br>
+<div style="font-size: small">
+<p>http://www.perlcabal.org/syn/S05.html#Extensible<i>metasyntax</i>%28%3C...%3E%29</p><p></p>
+</div>
+</body>
+</html>

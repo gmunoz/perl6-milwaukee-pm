@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Slide 63</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+function navigate(e) {
+    var keynum = (window.event) // IE
+        ? e.keyCode
+        : e.which;
+    if (keynum == 8) {
+        window.location = "062.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 13 || keynum == 32) {
+        window.location = "064.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 73 || keynum == 105) {
+        window.location = "index.html";
+        return false;
+    }
+    return true;
+}
+</script>
+</head>
+<body onkeydown="return navigate(event)">
+<div style="border-style: solid ; border-width: 2px ; font-size: x-large">
+<pre>
+
+
+
+
+
+
+
+
+
+
+                                 # Named regex
+
+    my regex engine { Starboard | Port }
+    my regex teams  { Brewers | Packers }
+
+    my @stuff = &lt;Gabriel Milwaukee Port Brewers Starboard Packers&gt;;
+
+    say grep /&lt;engine&gt;/, @stuff;
+    say grep /&lt;teams&gt;/, @stuff;
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+<br>
+<div style="font-size: small">
+<p></p>
+</div>
+</body>
+</html>
