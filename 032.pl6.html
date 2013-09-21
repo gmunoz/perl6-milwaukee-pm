@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Slide 32</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+function navigate(e) {
+    var keynum = (window.event) // IE
+        ? e.keyCode
+        : e.which;
+    if (keynum == 8) {
+        window.location = "031.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 13 || keynum == 32) {
+        window.location = "033.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 73 || keynum == 105) {
+        window.location = "index.html";
+        return false;
+    }
+    return true;
+}
+</script>
+</head>
+<body onkeydown="return navigate(event)">
+<div style="border-style: solid ; border-width: 2px ; font-size: x-large">
+<pre>
+
+
+
+
+
+    # Named parameters
+
+    sub full_name(:$first, :$last) { &quot;$first $last&quot; }
+    say full_name(last =&gt; &quot;Munoz&quot;, first =&gt; &quot;Gabriel&quot;);
+
+    # Optional parameters
+
+    sub name($fname, $lname?) {
+    	defined $lname ?? return &quot;$fname $lname&quot; !! return &quot;$fname&quot;;
+    }
+    say name(&quot;Gabriel&quot;);
+
+    # Perl 5 semantics are still here
+
+    sub add {
+    	my ($lhs, $rhs) = @_;
+    	return $lhs + $rhs;
+    }
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+<br>
+<div style="font-size: small">
+<p></p>
+</div>
+</body>
+</html>

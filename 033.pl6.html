@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Slide 33</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+function navigate(e) {
+    var keynum = (window.event) // IE
+        ? e.keyCode
+        : e.which;
+    if (keynum == 8) {
+        window.location = "032.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 13 || keynum == 32) {
+        window.location = "034.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 73 || keynum == 105) {
+        window.location = "index.html";
+        return false;
+    }
+    return true;
+}
+</script>
+</head>
+<body onkeydown="return navigate(event)">
+<div style="border-style: solid ; border-width: 2px ; font-size: x-large">
+<pre>
+
+
+
+
+
+
+
+
+
+                                 # The for loop
+
+    my @foo = &lt;clojure scala rust&gt;;  # auto-quote, qw//
+
+    for @foo        { .say }  # $_ is implicit as read-write variable
+    for @foo &lt;-&gt; $_ { .say }  # explicit form of default $_
+
+    for @foo -&gt; $item { say &quot;$item,&quot; }  # $item is read-only by default
+
+    for @foo -&gt;  $item is rw { $item = &quot;perl6&quot; if $item ~~ m/rust/ }
+    for @foo &lt;-&gt; $item       { $item = &quot;rust&quot; if $item ~~ m/perl6/ }
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+<br>
+<div style="font-size: small">
+<p>See: http://perlcabal.org/syn/S04.html</p><p></p>
+</div>
+</body>
+</html>

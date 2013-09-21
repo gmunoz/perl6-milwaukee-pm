@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Slide 18</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+function navigate(e) {
+    var keynum = (window.event) // IE
+        ? e.keyCode
+        : e.which;
+    if (keynum == 8) {
+        window.location = "017.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 13 || keynum == 32) {
+        window.location = "019" + ".html";
+        return false;
+    }
+    if (keynum == 73 || keynum == 105) {
+        window.location = "index.html";
+        return false;
+    }
+    return true;
+}
+</script>
+</head>
+<body onkeydown="return navigate(event)">
+<div style="border-style: solid ; border-width: 2px ; font-size: x-large">
+<pre>
+
+
+
+
+
+
+
+
+
+
+                                   Junctions
+
+    Type  Constructor  Operator  True if..
+
+    all   all          &amp;         no value evaluates to False
+    any   any          |         at least one value evaluates to True
+    one   one          ^         exactly one value evaluates to True
+    none  none                   no value evaluates to True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+<br>
+<div style="font-size: small">
+<p>http://doc.perl6.org/type/Junction</p><p></p>
+</div>
+</body>
+</html>

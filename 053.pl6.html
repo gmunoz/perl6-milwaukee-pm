@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Slide 53</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+function navigate(e) {
+    var keynum = (window.event) // IE
+        ? e.keyCode
+        : e.which;
+    if (keynum == 8) {
+        window.location = "052.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 13 || keynum == 32) {
+        window.location = "054.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 73 || keynum == 105) {
+        window.location = "index.html";
+        return false;
+    }
+    return true;
+}
+</script>
+</head>
+<body onkeydown="return navigate(event)">
+<div style="border-style: solid ; border-width: 2px ; font-size: x-large">
+<pre>
+
+
+
+
+
+
+
+
+
+                         # Matching start/end of string
+
+    my $str = q{foo
+    bar
+    cake};
+
+    # ^ and $ match the start/end of a *string*
+    say &quot;Matched start of string '$/'&quot;   if $str ~~ m/^foo/;
+    say &quot;Matched end of a string '$/'&quot;   if $str ~~ m/cake$/;
+    say &quot;Failed to match start of 'bar'&quot; if $str !~~ m/^bar/;
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+<br>
+<div style="font-size: small">
+<p></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Slide 6</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+function navigate(e) {
+    var keynum = (window.event) // IE
+        ? e.keyCode
+        : e.which;
+    if (keynum == 8) {
+        window.location = "005.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 13 || keynum == 32) {
+        window.location = "007.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 73 || keynum == 105) {
+        window.location = "index.html";
+        return false;
+    }
+    return true;
+}
+</script>
+</head>
+<body onkeydown="return navigate(event)">
+<div style="border-style: solid ; border-width: 2px ; font-size: x-large">
+<pre>
+
+
+
+
+
+
+
+
+                             # Ranges / Auto-quote
+
+    # Ranges are created with the .. operator
+
+    my @list1 = 1..100;
+
+    # Infinite lists - lists are lazy by default
+
+    my @list2 = 1..*;  # &quot;whatever star&quot;
+
+    # Autoquote list, Perl's qw// shortcut
+
+    my @list3 = &lt;one two three&gt;;
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+<br>
+<div style="font-size: small">
+<p></p>
+</div>
+</body>
+</html>

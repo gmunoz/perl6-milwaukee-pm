@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Slide 51</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+function navigate(e) {
+    var keynum = (window.event) // IE
+        ? e.keyCode
+        : e.which;
+    if (keynum == 8) {
+        window.location = "050" + ".html";
+        return false;
+    }
+    if (keynum == 13 || keynum == 32) {
+        window.location = "052.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 73 || keynum == 105) {
+        window.location = "index.html";
+        return false;
+    }
+    return true;
+}
+</script>
+</head>
+<body onkeydown="return navigate(event)">
+<div style="border-style: solid ; border-width: 2px ; font-size: x-large">
+<pre>
+
+
+
+
+
+
+
+
+
+
+    # Modifiers are adverbs at the *start* of a regex.
+
+    if &quot;TMTOWTDI&quot; ~~ m:ignorecase/ tmtowtdi / {  # or for short m:i//
+    	say &quot;Matched '$/' while ignoring case&quot;;
+    }
+
+    if &quot;foo bar&quot; ~~ m:sigspace/ foo bar / {  # space is significant now
+    	say &quot;Matched '$/' while space is significant&quot;;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+<br>
+<div style="font-size: small">
+<p>:ignorecase :i  => makes matching case insignificant</p><p>:ignoremark :m  => ignores accents</p><p>:sigspace   :s  => whitspace is significant</p><p>:ratchet    :r  => Causes the regex to <b>not</b> backtrack by default</p><p>:global     :g  => </p><p>:Perl5      :P5 => Runs in Perl 5 regular expression mode</p><p>Unicode modifiers</p><p>:bytes          => Match bytes</p><p>:codes          => Match codepoints</p><p>:graphs         => Match language-independent graphemes</p><p>:chars          => Match at current max level</p><p></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Slide 47</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+function navigate(e) {
+    var keynum = (window.event) // IE
+        ? e.keyCode
+        : e.which;
+    if (keynum == 8) {
+        window.location = "046.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 13 || keynum == 32) {
+        window.location = "048.pl6" + ".html";
+        return false;
+    }
+    if (keynum == 73 || keynum == 105) {
+        window.location = "index.html";
+        return false;
+    }
+    return true;
+}
+</script>
+</head>
+<body onkeydown="return navigate(event)">
+<div style="border-style: solid ; border-width: 2px ; font-size: x-large">
+<pre>
+
+
+
+
+
+
+
+
+
+                            # Smartmatch operator ~~
+
+    my $text = &quot;Milwaukee Perl Monger's&quot;;
+
+    if $text ~~ m/ Perl / {   # space is not significant by default!
+    	say &quot;I found '$/'&quot;;   # $/ is the match object
+    }
+
+    if $text !~~ m/ Clojure / {  # negation is represented by !~~
+    	say &quot;Didn't match Clojure&quot;;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+<br>
+<div style="font-size: small">
+<p></p>
+</div>
+</body>
+</html>
