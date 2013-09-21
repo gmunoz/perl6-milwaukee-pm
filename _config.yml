@@ -1,3 +1,4 @@
-safe: true
-lsi: false
 pygments: true
+relative_permalinks: false
+permalink: /news/:year/:month/:day/:title/
+repository: https://github.com/perl6-milwaukee-pm
